@@ -26,7 +26,7 @@ const GalleryList = () => {
     ];
 
     const listItems =
-        data.length !== 0 ? (
+        data.length === 0 ? (
             <NotFound />
         ) : (
             data.map((item) => <GalleryItem key={item.key} src={item.src} />)
