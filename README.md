@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Static NodeJS and Express site
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Seventh project of the Team Treehouse Full Stack JavaScript Techdegree.
 
 ## Available Scripts
 
