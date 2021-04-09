@@ -1,6 +1,6 @@
-import GalleryList from "./Components/GalleryList";
+import GalleryList from "./GalleryList";
 
-import styles from "../Gallery/style.module.css";
+import styles from "./style.module.css";
 
 const Gallery = () => {
     return (

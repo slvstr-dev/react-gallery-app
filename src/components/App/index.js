@@ -1,8 +1,7 @@
 import Search from "../Search";
 import Nav from "../Nav";
 import Gallery from "../Gallery";
-
-import styles from "../App/style.module.css";
+import styles from "./style.module.css";
 
 const App = () => {
     return (
