@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
 import styles from "./style.module.css";
 
+/**
+ *
+ */
 class Search extends Component {
     state = {};
 

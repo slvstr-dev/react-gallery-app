@@ -1,5 +1,10 @@
 import styles from "./style.module.css";
 
+/**
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const NotFound = () => {
     return (
         <li className={styles["not-found"]}>

@@ -1,5 +1,10 @@
 import NavItem from "./NavItem";
 
+/**
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const NavList = () => {
     const data = [
         { key: 0, href: "#", category: "Cats" },

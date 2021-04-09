@@ -1,6 +1,11 @@
 import GalleryItem from "./GalleryItem";
 import NotFound from "./NotFound";
 
+/**
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const GalleryList = () => {
     const data = [
         {

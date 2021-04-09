@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import NavList from "./NavList";
 import styles from "./style.module.css";
 
+/**
+ *
+ */
 class Nav extends Component {
     state = {};
 
