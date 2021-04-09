@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import NavList from "./NavList";
 import styles from "./style.module.css";
 
@@ -8,7 +8,7 @@ class Nav extends Component {
     render() {
         return (
             <nav className={styles["main-nav"]}>
-                <NavList/>
+                <NavList />
             </nav>
         );
     }

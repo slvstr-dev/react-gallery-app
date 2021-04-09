@@ -8,7 +8,12 @@ class Search extends Component {
     render() {
         return (
             <form className={styles["search-form"]}>
-                <input type="search" name="search" placeholder="Search" required />
+                <input
+                    type="search"
+                    name="search"
+                    placeholder="Search"
+                    required
+                />
 
                 <button type="submit" className={styles["search-button"]}>
                     <SearchIcon />
