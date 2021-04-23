@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 
 /**
@@ -10,7 +11,7 @@ import PropTypes from "prop-types";
 const NavItem = ({ href, category }) => {
     return (
         <li>
-            <a href={href}>{category}</a>
+            <NavLink to={href}>{category}</NavLink>
         </li>
     );
 };

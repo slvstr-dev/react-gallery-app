@@ -3,15 +3,13 @@ import styles from "./style.module.css";
 
 /**
  *
- * @returns {JSX.Element}
- * @constructor
  */
-const Gallery = () => {
+const Gallery = ({ data }) => {
     return (
         <div className={styles["photo-container"]}>
             <h2>Results</h2>
 
-            <GalleryList />
+            <GalleryList data={data} />
         </div>
     );
 };

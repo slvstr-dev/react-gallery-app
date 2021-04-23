@@ -1,29 +1,26 @@
-import React, { Component } from "react";
+import React from "react";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
 import styles from "./style.module.css";
 
 /**
  *
  */
-class Search extends Component {
-    state = {};
+const Search = ({ handleSubmit, onSearchChange }) => {
+    return (
+        <form className={styles["search-form"]} onSubmit={handleSubmit}>
+            <input
+                type="search"
+                onChange={onSearchChange}
+                name="search"
+                placeholder="Search"
+                required
+            />
 
-    render() {
-        return (
-            <form className={styles["search-form"]}>
-                <input
-                    type="search"
-                    name="search"
-                    placeholder="Search"
-                    required
-                />
-
-                <button type="submit" className={styles["search-button"]}>
-                    <SearchIcon />
-                </button>
-            </form>
-        );
-    }
-}
+            <button type="submit" className={styles["search-button"]}>
+                <SearchIcon />
+            </button>
+        </form>
+    );
+};
 
 export default Search;

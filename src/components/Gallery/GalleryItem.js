@@ -6,16 +6,19 @@ import PropTypes from "prop-types";
  * @returns {JSX.Element}
  * @constructor
  */
-const GalleryItem = ({ src }) => {
+const GalleryItem = ({ data }) => {
     return (
         <li>
-            <img src={src} alt="" />
+            <img
+                src={`https://live.staticflickr.com/${data.server}/${data.id}_${data.secret}.jpg`}
+                alt={data.title}
+            />
         </li>
     );
 };
 
 GalleryItem.propTypes = {
-    src: PropTypes.string.isRequired,
+    data: PropTypes.object.isRequired,
 };
 
 export default GalleryItem;

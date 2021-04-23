@@ -7,9 +7,21 @@ import NavItem from "./NavItem";
  */
 const NavList = () => {
     const data = [
-        { key: 0, href: "#", category: "Cats" },
-        { key: 1, href: "#", category: "Dogs" },
-        { key: 2, href: "#", category: "Computers" },
+        {
+            key: 0,
+            href: "cats",
+            category: "Cats",
+        },
+        {
+            key: 1,
+            href: "dogs",
+            category: "Dogs",
+        },
+        {
+            key: 2,
+            href: "computers",
+            category: "Computers",
+        },
     ];
 
     const navItems = data.map((item) => (
