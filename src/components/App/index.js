@@ -52,7 +52,6 @@ class App extends Component {
     };
 
     render() {
-        BlogPost();
         return (
             <Router>
                 <div className={styles.container}>
