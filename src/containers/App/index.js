@@ -21,7 +21,9 @@ class App extends Component {
     };
 
     componentDidMount() {
-        if (this.props.location.search) {
+        const isSearchPage = this.props.location.pathname.includes("/search");
+
+        if (isSearchPage) {
             const query = this.props.location.search.replace(/\?query=/, "");
 
             if (query.length > 0) {
@@ -31,9 +33,9 @@ class App extends Component {
             this.performSearch("coding", true);
         }
 
-        this.performSearch("cats", false);
-        this.performSearch("dogs", false);
-        this.performSearch("computers", false);
+        this.performSearch("cats");
+        this.performSearch("dogs");
+        this.performSearch("computers");
     }
 
     performSearch = (query, isSearchQuery) => {
@@ -92,23 +94,33 @@ class App extends Component {
 
                     <Route
                         path={"/cats"}
-                        render={() => <Gallery data={this.state.data.cats} />}
+                        render={() => (
+                            <Gallery title="Cats" data={this.state.data.cats} />
+                        )}
                     />
 
                     <Route
                         path="/dogs"
-                        render={() => <Gallery data={this.state.data.dogs} />}
+                        render={() => (
+                            <Gallery
+                                title={"Dogs"}
+                                data={this.state.data.dogs}
+                            />
+                        )}
                     />
 
                     <Route
                         path="/computers"
                         render={() => (
-                            <Gallery data={this.state.data.computers} />
+                            <Gallery
+                                title="Computers"
+                                data={this.state.data.computers}
+                            />
                         )}
                     />
 
                     <Route
-                        path="/search?query="
+                        path="/search"
                         render={() => (
                             <Gallery data={this.state.data.searchResults} />
                         )}
