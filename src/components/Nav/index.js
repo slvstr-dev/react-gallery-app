@@ -1,16 +1,14 @@
 import React from "react";
-import NavList from "./NavList";
+import { NavList } from "./NavList";
 import styles from "./style.module.css";
 
 /**
  *
  */
-const Nav = () => {
+export const Nav = () => {
     return (
         <nav className={styles["main-nav"]}>
-            <NavList />
+            <NavList styles={styles} />
         </nav>
     );
 };
-
-export default Nav;

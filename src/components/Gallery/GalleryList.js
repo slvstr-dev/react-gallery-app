@@ -1,20 +1,20 @@
-import GalleryItem from "./GalleryItem";
-import NotFound from "./NotFound";
+import { GalleryItem } from "./GalleryItem";
+import { NotFound } from "./NotFound";
 
 /**
  *
+ * @param data
  * @returns {JSX.Element}
  * @constructor
  */
-const GalleryList = ({ data }) => {
-    const listItems =
-        data.length === 0 ? (
-            <NotFound />
-        ) : (
-            data.map((item) => <GalleryItem key={item.id} data={item} />)
-        );
+export const GalleryList = ({ data }) => {
+    if (data.length === 0) {
+        return <NotFound />;
+    }
+
+    const listItems = data.map((item) => (
+        <GalleryItem key={item.id} data={item} />
+    ));
 
     return <ul>{listItems}</ul>;
 };
-
-export default GalleryList;

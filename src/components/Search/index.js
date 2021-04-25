@@ -5,7 +5,7 @@ import styles from "./style.module.css";
 /**
  *
  */
-const Search = ({ handleSubmit, onSearchChange }) => {
+export const Search = ({ handleSubmit, onSearchChange }) => {
     return (
         <form className={styles["search-form"]} onSubmit={handleSubmit}>
             <input
@@ -23,4 +23,4 @@ const Search = ({ handleSubmit, onSearchChange }) => {
     );
 };
 
-export default Search;
+// export default Search;

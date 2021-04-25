@@ -1,10 +1,10 @@
-import GalleryList from "./GalleryList";
+import { GalleryList } from "./GalleryList";
 import styles from "./style.module.css";
 
 /**
  *
  */
-const Gallery = ({ data }) => {
+export const Gallery = ({ data }) => {
     return (
         <div className={styles["photo-container"]}>
             <h2>Results</h2>
@@ -13,5 +13,3 @@ const Gallery = ({ data }) => {
         </div>
     );
 };
-
-export default Gallery;

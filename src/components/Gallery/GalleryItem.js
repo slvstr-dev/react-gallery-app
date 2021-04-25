@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
  * @returns {JSX.Element}
  * @constructor
  */
-const GalleryItem = ({ data }) => {
+export const GalleryItem = ({ data }) => {
     return (
         <li>
             <img
@@ -20,5 +20,3 @@ const GalleryItem = ({ data }) => {
 GalleryItem.propTypes = {
     data: PropTypes.object.isRequired,
 };
-
-export default GalleryItem;

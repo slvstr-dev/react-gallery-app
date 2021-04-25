@@ -4,21 +4,24 @@ import PropTypes from "prop-types";
 /**
  *
  * @param href
+ * @param onPageChange
+ * @param styles
  * @param category
  * @returns {JSX.Element}
  * @constructor
  */
-const NavItem = ({ href, category }) => {
+export const NavItem = ({ href, styles, category }) => {
     return (
         <li>
-            <NavLink to={href}>{category}</NavLink>
+            <NavLink to={href} activeClassName={styles["active"]}>
+                {category}
+            </NavLink>
         </li>
     );
 };
 
 NavItem.propTypes = {
     href: PropTypes.string.isRequired,
+    styles: PropTypes.object.isRequired,
     category: PropTypes.string.isRequired,
 };
-
-export default NavItem;
