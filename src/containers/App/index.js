@@ -122,7 +122,13 @@ class App extends Component {
                     <Route
                         path="/search"
                         render={() => (
-                            <Gallery data={this.state.data.searchResults} />
+                            <Gallery
+                                title={this.props.location.search.replace(
+                                    /\?query=/,
+                                    ""
+                                )}
+                                data={this.state.data.searchResults}
+                            />
                         )}
                     />
 

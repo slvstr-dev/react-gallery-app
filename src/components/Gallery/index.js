@@ -4,10 +4,10 @@ import styles from "./style.module.css";
 /**
  *
  */
-export const Gallery = ({ data }) => {
+export const Gallery = ({ title, data }) => {
     return (
         <div className={styles["photo-container"]}>
-            <h2>Results</h2>
+            <h2>Results: {title}</h2>
 
             <GalleryList data={data} />
         </div>
