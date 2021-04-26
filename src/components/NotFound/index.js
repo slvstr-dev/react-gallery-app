@@ -1,7 +1,10 @@
 import styles from "./style.module.css";
+import PropTypes from "prop-types";
 
 /**
- *
+ * Display information when query returns no results or requested route doens't excist
+ * @param {string} title
+ * @param {string} message
  * @returns {JSX.Element}
  * @constructor
  */
@@ -13,4 +16,9 @@ export const NotFound = ({ title, message }) => {
             <p>{message}</p>
         </section>
     );
+};
+
+NotFound.propTypes = {
+    title: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired,
 };

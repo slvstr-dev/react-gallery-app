@@ -2,11 +2,10 @@ import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 
 /**
- *
- * @param href
- * @param onPageChange
- * @param styles
- * @param category
+ * Display single navigation item
+ * @param {string} href
+ * @param {Object} styles
+ * @param {string} category
  * @returns {JSX.Element}
  * @constructor
  */

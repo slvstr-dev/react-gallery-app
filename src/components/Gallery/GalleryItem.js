@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 
 /**
- *
- * @param src
+ * Display single gallery item
+ * @param {Object[]} data
  * @returns {JSX.Element}
  * @constructor
  */

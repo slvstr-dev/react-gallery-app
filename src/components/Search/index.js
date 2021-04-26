@@ -1,16 +1,21 @@
 import React from "react";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
 import styles from "./style.module.css";
+import PropTypes from "prop-types";
 
 /**
- *
+ * Display search input
+ * @param {func} handleSearchSubmit
+ * @param {func} onSearchInputChange
+ * @returns {JSX.Element}
+ * @constructor
  */
-export const Search = ({ handleSubmit, onSearchChange }) => {
+export const Search = ({ handleSearchSubmit, onSearchInputChange }) => {
     return (
-        <form className={styles["search-form"]} onSubmit={handleSubmit}>
+        <form className={styles["search-form"]} onSubmit={handleSearchSubmit}>
             <input
                 type="search"
-                onChange={onSearchChange}
+                onChange={onSearchInputChange}
                 name="search"
                 placeholder="Search"
                 required
@@ -23,4 +28,7 @@ export const Search = ({ handleSubmit, onSearchChange }) => {
     );
 };
 
-// export default Search;
+Search.propTypes = {
+    handleSearchSubmit: PropTypes.func.isRequired,
+    onSearchInputChange: PropTypes.func.isRequired,
+};
