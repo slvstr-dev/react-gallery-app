@@ -127,6 +127,7 @@ class App extends Component {
                     />
 
                     <Route
+                        exact
                         path={"/cats"}
                         render={() =>
                             this.state.loading ? (
@@ -141,6 +142,7 @@ class App extends Component {
                     />
 
                     <Route
+                        exact
                         path="/dogs"
                         render={() =>
                             this.state.loading ? (
@@ -155,6 +157,7 @@ class App extends Component {
                     />
 
                     <Route
+                        exact
                         path="/computers"
                         render={() =>
                             this.state.loading ? (
@@ -169,6 +172,7 @@ class App extends Component {
                     />
 
                     <Route
+                        exact
                         path="/search"
                         render={() =>
                             this.state.loading ? (
