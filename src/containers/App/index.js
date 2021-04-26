@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Switch, Route, withRouter } from "react-router-dom";
 
-import { apiKey } from "../../config";
+import { ApiKey } from "../../config";
 import { Search } from "../../components/Search";
 import { Nav } from "../../components/Nav";
 import { Gallery } from "../../components/Gallery";
-import { NotFound } from "../../components/Gallery/NotFound";
+import { NotFound } from "../../components/NotFound";
 
 import styles from "./style.module.css";
 
@@ -40,7 +40,7 @@ class App extends Component {
 
     performSearch = (query, isSearchQuery) => {
         fetch(
-            `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`
+            `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${ApiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`
         )
             .then((response) => response.json())
             .then((responseData) =>
@@ -123,16 +123,20 @@ class App extends Component {
                         path="/search"
                         render={() => (
                             <Gallery
-                                title={this.props.location.search.replace(
-                                    /\?query=/,
-                                    ""
-                                )}
+                                title={this.props.location.search}
                                 data={this.state.data.searchResults}
                             />
                         )}
                     />
 
-                    <Route component={NotFound} />
+                    <Route
+                        render={() => (
+                            <NotFound
+                                title="404"
+                                message="Sadly this page doesn't exist. Please use the navigation or search to paint your screen with some cool images!"
+                            />
+                        )}
+                    />
                 </Switch>
             </div>
         );
