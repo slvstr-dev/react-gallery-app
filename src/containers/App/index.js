@@ -16,28 +16,18 @@ import styles from "./style.module.css";
 class App extends Component {
     state = {
         data: {
-            searchResults: [],
+            random: [],
             cats: [],
             dogs: [],
             computers: [],
+            searchResults: [],
         },
-        query: "",
+        latestQuery: "",
         loading: true,
     };
 
     componentDidMount() {
-        const isSearchPage = this.props.location.pathname.includes("/search");
-
-        if (isSearchPage) {
-            const query = this.props.location.search.replace(/\?query=/, "");
-
-            if (query.length > 0) {
-                this.performSearch(query, true);
-            }
-        } else {
-            this.performSearch("coding", true);
-        }
-
+        this.performSearch("random", false);
         this.performSearch("cats", false);
         this.performSearch("dogs", false);
         this.performSearch("computers", false);
@@ -87,7 +77,7 @@ class App extends Component {
         this.setState((prevState) => {
             return {
                 ...prevState,
-                query: event.target.value,
+                latestQuery: event.target.value,
             };
         });
     };
@@ -98,8 +88,8 @@ class App extends Component {
      */
     handleSearchSubmit = (event) => {
         event.preventDefault();
-        this.performSearch(this.state.query, true);
-        this.props.history.push(`/search?query=${this.state.query}`);
+        this.performSearch(this.state.latestQuery, true);
+        this.props.history.push(`/search/${this.state.latestQuery}`);
         event.currentTarget.reset();
     };
 
@@ -117,83 +107,65 @@ class App extends Component {
                     <Route
                         exact
                         path="/"
-                        render={() =>
-                            this.state.loading ? (
-                                <h2>Loading...</h2>
-                            ) : (
-                                <Gallery data={this.state.data.searchResults} />
-                            )
-                        }
+                        render={() => (
+                            <Gallery
+                                loading={this.state.loading}
+                                latestQuery="/"
+                                data={this.state.data.random}
+                            />
+                        )}
                     />
 
                     <Route
                         exact
                         path={"/cats"}
-                        render={() =>
-                            this.state.loading ? (
-                                <h2>Searching for cat images...</h2>
-                            ) : (
-                                <Gallery
-                                    title="Cats"
-                                    data={this.state.data.cats}
-                                />
-                            )
-                        }
+                        render={() => (
+                            <Gallery
+                                loading={this.state.loading}
+                                latestQuery="Cats"
+                                data={this.state.data.cats}
+                            />
+                        )}
                     />
 
                     <Route
                         exact
                         path="/dogs"
-                        render={() =>
-                            this.state.loading ? (
-                                <h2>Searching for dogs images...</h2>
-                            ) : (
-                                <Gallery
-                                    title="Dogs"
-                                    data={this.state.data.dogs}
-                                />
-                            )
-                        }
+                        render={() => (
+                            <Gallery
+                                loading={this.state.loading}
+                                latestQuery="Dogs"
+                                data={this.state.data.dogs}
+                            />
+                        )}
                     />
 
                     <Route
                         exact
                         path="/computers"
-                        render={() =>
-                            this.state.loading ? (
-                                <h2>Searching for computer images...</h2>
-                            ) : (
-                                <Gallery
-                                    title="Computers"
-                                    data={this.state.data.computers}
-                                />
-                            )
-                        }
+                        render={() => (
+                            <Gallery
+                                loading={this.state.loading}
+                                latestQuery="Computers"
+                                data={this.state.data.computers}
+                            />
+                        )}
                     />
 
                     <Route
                         exact
-                        path="/search"
-                        render={() =>
-                            this.state.loading ? (
-                                <h2>Searching for images...</h2>
-                            ) : (
-                                <Gallery
-                                    title={this.props.location.search}
-                                    data={this.state.data.searchResults}
-                                />
-                            )
-                        }
-                    />
-
-                    <Route
+                        path="/search/:query"
                         render={() => (
-                            <NotFound
-                                title="404"
-                                message="Sadly this page doesn't exist. Please use the navigation or search to paint your screen with some cool images!"
+                            <Gallery
+                                loading={this.state.loading}
+                                data={this.state.data.searchResults}
+                                latestQuery={this.state.latestQuery}
+                                performSearch={this.performSearch}
                             />
                         )}
                     />
+
+                    <Route render={() => <NotFound />} />
                 </Switch>
             </div>
         );
