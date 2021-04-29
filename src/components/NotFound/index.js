@@ -19,6 +19,12 @@ export const NotFound = ({ title, message }) => {
 };
 
 NotFound.propTypes = {
-    title: PropTypes.string.isRequired,
-    message: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    message: PropTypes.string,
+};
+
+NotFound.defaultProps = {
+    title: "404",
+    message:
+        "Sadly this page doesn't exist. Please use the navigation or search to paint your screen with some cool images!",
 };
