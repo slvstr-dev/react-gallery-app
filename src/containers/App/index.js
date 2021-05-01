@@ -53,15 +53,15 @@ class App extends Component {
      * @param isSearchQuery
      */
     performSearch = (query, isSearchQuery) => {
-        const queryData = isSearchQuery ? "searchResults" : query;
+        const queryDataKey = isSearchQuery ? "searchResults" : query;
 
         this.setState((prevState) => {
             return {
                 ...prevState,
                 data: {
                     ...prevState.data,
-                    [queryData]: {
-                        ...prevState.data[queryData],
+                    [queryDataKey]: {
+                        ...prevState.data[queryDataKey],
                         loading: true,
                     },
                 },
@@ -78,7 +78,7 @@ class App extends Component {
                         ...prevState,
                         data: {
                             ...prevState.data,
-                            [queryData]: {
+                            [queryDataKey]: {
                                 images: responseData["photos"]["photo"],
                                 loading: false,
                             },

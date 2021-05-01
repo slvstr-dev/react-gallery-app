@@ -14,14 +14,15 @@ import PropTypes from "prop-types";
  * @constructor
  */
 export const Gallery = ({ performSearch, queryData }) => {
-    // The history hook provides access to the history object
+    // Provide access to the history object
     const history = useHistory();
 
+    // Set value of current query without unwanted characters from pathname
     const currentQuery = history.location.pathname
         .replace(/(search)|(\/)/g, "")
         .replace(/%20/g, " ");
 
-    // The useEffect hook is like a componentDidMount function for function components
+    // Fetch new data for search queries on browser navigation by using a hook that allows similar behaviour as componentDidMount
     useEffect(() => {
         if (
             history.location.pathname.includes("/search/") &&
@@ -46,14 +47,7 @@ export const Gallery = ({ performSearch, queryData }) => {
 
     if (queryData.loading) {
         return <h2>Loading {currentQuery} images...</h2>;
-    } else if (listItems.length === 0) {
-        return (
-            <NotFound
-                title="Hmm... no matched results"
-                message="Let's try another query!"
-            />
-        );
-    } else {
+    } else if (listItems.length > 0) {
         return (
             <div className={styles["photo-container"]}>
                 <h2>{title}</h2>
@@ -62,6 +56,13 @@ export const Gallery = ({ performSearch, queryData }) => {
             </div>
         );
     }
+
+    return (
+        <NotFound
+            title="Hmm... no matched results"
+            message="Let's try another query!"
+        />
+    );
 };
 
 Gallery.propTypes = {
