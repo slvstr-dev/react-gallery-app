@@ -8,14 +8,12 @@ import PropTypes from "prop-types";
 
 /**
  * Display list of gallery items
- * @param {boolean} loading
- * @param {string} latestQuery
  * @param {func} performSearch
- * @param {Object[]} data
+ * @param {Object[]} queryData
  * @returns {JSX.Element}
  * @constructor
  */
-export const Gallery = ({ loading, latestQuery, performSearch, data }) => {
+export const Gallery = ({ performSearch, queryData }) => {
     // The history hook provides access to the history object
     const history = useHistory();
 
@@ -25,14 +23,20 @@ export const Gallery = ({ loading, latestQuery, performSearch, data }) => {
 
     // The useEffect hook is like a componentDidMount function for function components
     useEffect(() => {
-        if (history.location.pathname.includes("/search/")) {
-            if (currentQuery !== latestQuery) {
-                performSearch(currentQuery, true);
-            }
+        if (
+            history.location.pathname.includes("/search/") &&
+            history.action === "POP"
+        ) {
+            performSearch(currentQuery, true);
         }
-    }, []);
+    }, [
+        history.location.pathname,
+        history.action,
+        performSearch,
+        currentQuery,
+    ]);
 
-    const listItems = data.map((item) => (
+    const listItems = queryData.images.map((item) => (
         <GalleryItem key={item.id} data={item} />
     ));
 
@@ -40,7 +44,7 @@ export const Gallery = ({ loading, latestQuery, performSearch, data }) => {
         ? `You've searched for ${currentQuery} images`
         : "Below are some images to get started. Let's find some images yourself!";
 
-    if (loading) {
+    if (queryData.loading) {
         return <h2>Loading {currentQuery} images...</h2>;
     } else if (listItems.length === 0) {
         return (
@@ -61,8 +65,6 @@ export const Gallery = ({ loading, latestQuery, performSearch, data }) => {
 };
 
 Gallery.propTypes = {
-    loading: PropTypes.bool.isRequired,
-    latestQuery: PropTypes.string.isRequired,
     performSearch: PropTypes.func,
-    data: PropTypes.array.isRequired,
+    queryData: PropTypes.object.isRequired,
 };

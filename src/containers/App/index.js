@@ -16,14 +16,28 @@ import styles from "./style.module.css";
 class App extends Component {
     state = {
         data: {
-            random: [],
-            cats: [],
-            dogs: [],
-            computers: [],
-            searchResults: [],
+            random: {
+                images: [],
+                loading: true,
+            },
+            cats: {
+                images: [],
+                loading: true,
+            },
+            dogs: {
+                images: [],
+                loading: true,
+            },
+            computers: {
+                images: [],
+                loading: true,
+            },
+            searchResults: {
+                images: [],
+                loading: true,
+            },
         },
         latestQuery: "",
-        loading: true,
     };
 
     componentDidMount() {
@@ -35,14 +49,22 @@ class App extends Component {
 
     /**
      * Fetch requested images from the Flickr API
-     * @param {string} query
-     * @param {boolean} isSearchQuery
+     * @param query
+     * @param isSearchQuery
      */
     performSearch = (query, isSearchQuery) => {
+        const queryData = isSearchQuery ? "searchResults" : query;
+
         this.setState((prevState) => {
             return {
                 ...prevState,
-                loading: true,
+                data: {
+                    ...prevState.data,
+                    [queryData]: {
+                        ...prevState.data[queryData],
+                        loading: true,
+                    },
+                },
             };
         });
 
@@ -52,15 +74,15 @@ class App extends Component {
             .then((response) => response.json())
             .then((responseData) =>
                 this.setState((prevState) => {
-                    const key = isSearchQuery ? "searchResults" : query;
-
                     return {
                         ...prevState,
                         data: {
                             ...prevState.data,
-                            [key]: responseData["photos"]["photo"],
+                            [queryData]: {
+                                images: responseData["photos"]["photo"],
+                                loading: false,
+                            },
                         },
-                        loading: false,
                     };
                 })
             )
@@ -108,11 +130,7 @@ class App extends Component {
                         exact
                         path="/"
                         render={() => (
-                            <Gallery
-                                loading={this.state.loading}
-                                latestQuery="/"
-                                data={this.state.data.random}
-                            />
+                            <Gallery queryData={this.state.data.random} />
                         )}
                     />
 
@@ -120,11 +138,7 @@ class App extends Component {
                         exact
                         path={"/cats"}
                         render={() => (
-                            <Gallery
-                                loading={this.state.loading}
-                                latestQuery="Cats"
-                                data={this.state.data.cats}
-                            />
+                            <Gallery queryData={this.state.data.cats} />
                         )}
                     />
 
@@ -132,11 +146,7 @@ class App extends Component {
                         exact
                         path="/dogs"
                         render={() => (
-                            <Gallery
-                                loading={this.state.loading}
-                                latestQuery="Dogs"
-                                data={this.state.data.dogs}
-                            />
+                            <Gallery queryData={this.state.data.dogs} />
                         )}
                     />
 
@@ -144,11 +154,7 @@ class App extends Component {
                         exact
                         path="/computers"
                         render={() => (
-                            <Gallery
-                                loading={this.state.loading}
-                                latestQuery="Computers"
-                                data={this.state.data.computers}
-                            />
+                            <Gallery queryData={this.state.data.computers} />
                         )}
                     />
 
@@ -157,9 +163,7 @@ class App extends Component {
                         path="/search/:query"
                         render={() => (
                             <Gallery
-                                loading={this.state.loading}
-                                data={this.state.data.searchResults}
-                                latestQuery={this.state.latestQuery}
+                                queryData={this.state.data.searchResults}
                                 performSearch={this.performSearch}
                             />
                         )}
